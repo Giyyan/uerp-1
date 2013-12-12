@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Партнер</td>
+        <td>Кампания</td>
+        <td>Аккаунт-менеджер</td>
+        <td>Услуга</td>
+        <td>Доменная зона</td>
+        {% for date in dates %}
+        <td>{{ date }}</td>
+        {% endfor %}
+    </tr>
+    </thead>
+    <tbody>
+    {% regroup object_list by partner_id as partner_list %}
+    {% for partner in partner_list %}
+        {% regroup partner.list by campaign as campaign_list %}
+            {% for item in campaign_list %}
+            <tr>
+                <td rowspan="{{ item.list|length }}">{{ partner.grouper }}</td>
+                <td>{{ partner.campaign }}</td>
+                <td>{{ partner.specialist_id }}</td>
+                <td>{{ partner.service_id }}</td>
+                <td>{{ partner.domain_zone }}</td>
+                {% for date in dates %}
+                    <td>
+                        {{ item.list }}
+                    </td>
+                {% endfor %}
+
+            </tr>
+            {% endfor %}
+     {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
