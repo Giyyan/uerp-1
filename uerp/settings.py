@@ -71,6 +71,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'die_hard',
+#         'USER': 'john_mcclane',
+#         'PASSWORD': 'vjq1gfhjkm',
+#         'HOST': '46.28.67.221',
+#     }
+# }
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 

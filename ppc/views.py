@@ -16,25 +16,26 @@ class PPCDayReport(ListView):
         dates.sort()
         context['dates'] = dates
         report = []
-        # partners =
         for partner, i in itertools.groupby(self.queryset, lambda x: x.partner_id):
-            record = {
-                'partner': partner,
-                'service': 0,
-                'specialist': 0,
-                'campaign': 0,
-                'domain_zone': 0,
-                'dates': []
-            }
+
             for campaign, j in itertools.groupby(i, lambda x: x.campaign):
-                record['campaign'] = campaign
-
+                record = {
+                    'partner': partner,
+                    'campaign': campaign,
+                }
+                record_dates = {}
                 for item in j:
-                    if not record['specialist']:
+                    if not record.get('specialist'):
                         record['specialist'] = item.specialist_id
-                    if not record['service']:
+                    if not record.get('service'):
                         record['service'] = item.service_id
-                    if not record['domain_zone']:
+                    if not record.get('domain_zone'):
                         record['domain_zone'] = item.domain_zone
-
+                    record_dates[item.date] = item.cash
+                for date in dates:
+                    if not record_dates.get(date):
+                        record_dates[date] = '-'
+                record['dates'] = sorted([{'date': d, 'cash': c} for d, c in record_dates.items()], key=lambda d: d['date'])
+                report.append(record)
+        context['report_list'] = report
         return context
