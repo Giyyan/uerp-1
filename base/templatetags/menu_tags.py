@@ -9,5 +9,9 @@ register = template.Library()
 
 
 @register.inclusion_tag('menu.html')
-def show_menu():
-    return {'menu': MenuItem.objects.all()}
+def show_menu(parent=None):
+    if parent is None:
+        menus = MenuItem.objects.all()
+    else:
+        menus = MenuItem.objects.filter(parent=parent)
+    return {'menu': menus}
