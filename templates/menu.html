@@ -11,7 +11,7 @@
                     </li>
                 {% else %}
                     <li><a href="#">{{ node.name }}</a>
-                        <ul class="dropdown-menu">
+                        <ul>
                             {{ children }}
                         </ul>
                     </li>
@@ -22,4 +22,24 @@
             {% endif %}
     {% endrecursetree %}
 </ul>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.dropdown-menu').navgoco({
+              caret: '<span class="caret"></span>',
+              accordion: false,
+              openClass: 'open',
+              save: true,
+              cookie: {
+                  name: 'navgoco',
+                  expires: false,
+                  path: '/'
+              },
+              slide: {
+                  duration: 400,
+                  easing: 'swing'
+              }
+          });
+    });
+</script>
 
