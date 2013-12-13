@@ -1,0 +1,25 @@
+{% load mptt_tags %}
+
+<ul  class="nav nav-pills nav-justifie">
+    {% recursetree menu %}
+            {% if not node.is_leaf_node %}
+                {% if node.is_root_node %}
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ node.name }}<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            {{ children }}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="#">{{ node.name }}</a>
+                        <ul class="dropdown-menu">
+                            {{ children }}
+                        </ul>
+                    </li>
+                {% endif %}
+
+            {% else %}
+                <li ><a href="{{ node.url }}">{{ node.name }}</a></li>
+            {% endif %}
+    {% endrecursetree %}
+</ul>
+

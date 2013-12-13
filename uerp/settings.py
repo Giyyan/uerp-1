@@ -39,6 +39,10 @@ INSTALLED_APPS = (
     'res',
     'ppc',
     'debug_toolbar',
+    'base',
+    'base.templatetags',
+    'mptt',
+    'django_mptt_admin',
 )
 
 MIDDLEWARE_CLASSES = (
