@@ -36,11 +36,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'res',
-    'ppc',
+    'uerp.apps.res',
+    'uerp.apps.ppc',
     'debug_toolbar',
-    'base',
-    'base.templatetags',
+    'uerp.apps.base',
+    'uerp.apps.base.templatetags',
     'mptt',
     'django_mptt_admin',
 )
@@ -104,7 +104,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'templates'),)
+TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'uerp/templates'),)
 
 TEMPLATE_LOADERS = (
     ('django.template.loaders.cached.Loader', (

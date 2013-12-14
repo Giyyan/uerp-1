@@ -2,7 +2,7 @@ from django import template
 from django.template.defaulttags import url
 from django.template import Node, TemplateSyntaxError
 from django.utils import six
-from base.models import MenuItem
+from uerp.apps.base.models import MenuItem
 
 
 register = template.Library()

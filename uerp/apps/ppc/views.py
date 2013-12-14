@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import ListView
 import itertools
-from ppc.models import ProcessPPCDayReport
-from res.models import Employee
+from django.views.generic import ListView
+from uerp.apps.ppc.models import ProcessPPCDayReport
 
 
 class PPCDayReport(ListView):

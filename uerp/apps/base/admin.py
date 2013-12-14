@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_mptt_admin.admin import DjangoMpttAdmin
-from .models import MenuItem
+from uerp.apps.base.models import MenuItem
 
 
 class MenuItemAdmin(DjangoMpttAdmin):

@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from ppc.views import PPCDayReport
-from res.views import EmployeeList
+from uerp.apps.ppc.views import PPCDayReport
+from uerp.apps.res.views import EmployeeList
 
 admin.autodiscover()
 

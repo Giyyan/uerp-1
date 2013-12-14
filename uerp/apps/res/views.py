@@ -1,6 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import ListView
-from res.models import Employee
+from uerp.apps.res.models import Employee
 
 
 class EmployeeList(ListView):
