@@ -10,9 +10,17 @@
         <table class="table table-striped">
         {% for employee in object_list %}
             <tr>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ employee }}</td>
                 <td>{{ employee.department }}</td>
                 <td>{{ employee.job }}</td>
+                <td>{{ employee.work_location }}</td>
+                <td>{{ employee.mobile_phone }}</td>
+                <td>{{ employee.work_phone }}</td>
+                <td>{{ employee.work_email }}</td>
+                <td>{% if employee.avatar %}<img src='{{ employee.avatar.url }}' style="max-width: 200px;"/>{% endif %}</td>
+                <td>{{ employee.resource.active|yesno:"Активен,Не активен" }}</td>
+
             </tr>
         {% endfor %}
         </table>

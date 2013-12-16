@@ -1,5 +1,6 @@
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.contrib.auth import authenticate, login
 
 
 class Resource(models.Model):
@@ -56,13 +57,21 @@ class EmployeeManager(BaseUserManager):
         return user
 
 
-class Employee(AbstractBaseUser):
+class Employee(AbstractBaseUser, PermissionsMixin):
+    is_active = models.BooleanField(default=True, verbose_name='Активен')
+    is_admin = models.BooleanField(default=False, verbose_name='Админ')
+    is_staff = models.BooleanField(default=False, verbose_name='Модератор')
+
+    resource = models.ForeignKey('Resource', verbose_name='Ресурс')
     job = models.ForeignKey('Job', verbose_name='Должность')
     department = models.ForeignKey('Department', verbose_name='Направление')
-    resource = models.ForeignKey('Resource', verbose_name='Ресурс')
+    work_location = models.CharField('Местоположение офиса', max_length=32)
+    # photo = models.BinaryField('Фото')
+    avatar = models.ImageField(upload_to='avatar', null=True)
+
     mobile_phone = models.CharField('Мобильный телефон', max_length=32)
     work_phone = models.CharField('Рабочий телефон', max_length=32)
-    work_email = models.CharField('Рабочий email', max_length=240)
+    work_email = models.CharField('Рабочий email', max_length=240, unique=True)
 
     USERNAME_FIELD = "work_email"
 

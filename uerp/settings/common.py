@@ -5,7 +5,11 @@ from os.path import basename
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SITE_NAME = basename(BASE_DIR)
 
+########## SITE CONFIGURATION
+# Hosts/domain names that are valid for this site
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
+########## END SITE CONFIGURATION
 
 ########## DEBUG CONFIGURATION
 DEBUG = False
@@ -47,7 +51,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
     'uerp.apps.base',
     'uerp.apps.base.templatetags',
-
+    'uerp.apps.hr',
     'uerp.apps.res',
     'uerp.apps.ppc',
 )
@@ -126,3 +130,15 @@ TEMPLATE_LOADERS = (
     )),
 )
 ########## END TEMPLATE CONFIGURATION
+
+
+########## AUTH CONFIGURATION
+AUTH_USER_MODEL = 'hr.Employee'
+
+LOGIN_URL = '/login/'
+#LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+########## END AUTH CONFIGURATION

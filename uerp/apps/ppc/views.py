@@ -5,7 +5,7 @@ from uerp.apps.ppc.models import ProcessPPCDayReport
 
 class PPCDayReport(ListView):
     model = ProcessPPCDayReport
-    template_name = 'ppc/day_report.html'
+    template_name = 'templates/ppc/day_report.html'
     queryset = ProcessPPCDayReport.objects.all().order_by('partner_id', 'campaign', 'date')
 
     def get_context_data(self, **kwargs):
@@ -24,7 +24,7 @@ class PPCDayReport(ListView):
                 record_dates = {}
                 for item in j:
                     if not record.get('specialist'):
-                        record['specialist'] = item.specialist_id
+                        record['specialist'] = item.specialist
                     if not record.get('service'):
                         record['service'] = item.service_id
                     if not record.get('domain_zone'):

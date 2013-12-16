@@ -1,4 +1,5 @@
 from django.db import models
+from uerp.apps.res.models import User
 
 
 class ProcessLaunch(models.Model):
@@ -43,7 +44,7 @@ class ProcessPPCFact(models.Model):
 class ProcessPPCDayReport(models.Model):
     partner_id = models.IntegerField('Партнер')
     service_id = models.IntegerField('Услуга')
-    specialist_id = models.IntegerField('Аккаунт-менеджер')
+    specialist = models.ForeignKey('User', verbose_name='Аккаунт-менеджер')
     domain_zone = models.TextField('Доменная зона')
     campaign = models.CharField('Кампания', max_length=200)
     cash = models.FloatField('Факт')

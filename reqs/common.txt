@@ -3,3 +3,5 @@ South
 pytils
 django-mptt
 django_mptt_admin
+sorl-thumbnail
+pillow
