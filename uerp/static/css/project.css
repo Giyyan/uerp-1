@@ -1,0 +1,42 @@
+form.login {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+}
+
+form.login .add-on:first-child {
+    width: 50px;
+}
+
+form.login input[type='email'], form.login input[type='password'] {
+    width: 150px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;: ;
+}
+
+.employee_avatar {
+    width: 100px;
+    height: auto;
+    clip: rect(10px, 100px, 110px, 0px);
+}
+
+.employee, .employee > .avatar, .employee > .info {
+    float: left;
+}
+
+.employee {
+    width: 400px;
+    margin: 20px;
+}

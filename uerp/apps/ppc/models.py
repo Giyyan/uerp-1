@@ -42,9 +42,9 @@ class ProcessPPCFact(models.Model):
 
 
 class ProcessPPCDayReport(models.Model):
-    partner_id = models.IntegerField('Партнер')
+    partner = models.ForeignKey('partner.Partner', verbose_name='Партнер')
     service_id = models.IntegerField('Услуга')
-    specialist = models.ForeignKey('User', verbose_name='Аккаунт-менеджер')
+    specialist = models.ForeignKey('res.User', verbose_name='Аккаунт-менеджер')
     domain_zone = models.TextField('Доменная зона')
     campaign = models.CharField('Кампания', max_length=200)
     cash = models.FloatField('Факт')

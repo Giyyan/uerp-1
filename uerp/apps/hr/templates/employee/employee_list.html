@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block page %}
+    <div class="employers">
+    {% for employee in object_list %}
+        <div class="employee">
+            <div class="avatar">
+                {% if employee.avatar %}<img src='{{ employee.avatar.url }}' class="employee_avatar"/>{% endif %}
+            </div>
+            <div class="info">
+                <p>{{ employee }} ({{ employee.work_email }})</p>
+                <p>{% if employee.department %}{{ employee.department }}{% endif %}</p>
+                <p>{% if employee.job %}{{ employee.job }}{% endif %}</p>
+                <p>{% if employee.mobile_phone %}{{ employee.mobile_phone }}{% endif %}</p>
+                <p>{% if employee.work_phone %}{{ employee.work_phone }}{% endif %}</p>
+                <p>{% if employee.work_location %}{{ employee.work_location }}{% endif %}</p>
+                <p>{{ employee.resource.active|yesno:"Активен,Не активен" }}</p>
+            </div>
+        <div style="clear: both"></div>
+        </div>
+    {% endfor %}
+    <div style="clear: both"></div>
+    </div>
+
+{% endblock %}

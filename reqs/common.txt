@@ -5,3 +5,6 @@ django-mptt
 django_mptt_admin
 sorl-thumbnail
 pillow
+django-rules-light
+django-extra-views
+django-autocomplete-light

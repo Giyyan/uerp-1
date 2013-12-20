@@ -1,23 +1,70 @@
 {% load menu_tags %}
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="ru">
     <head>
         <title>UpSale & Inksystem</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <!-- Bootstrap -->
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/navgoco.css' %}">
+        <link href="{% static 'css/project.css' %}" rel="stylesheet">
+
+        {% block extra_css %}{% endblock extra_css %}
     </head>
     <body>
-        {% show_menu %}
         {% block content %}
+            <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+                <div class="collapse navbar-collapse">
+                    {% show_menu %}
 
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user }} </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Настройки</a></li>
+                                <li><a href="#">Планировщик</a></li>
+                                <li class="divider"></li>
+                                <li><a href="{% url 'logout' %}">Выход</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'logout' %}">Выход</a></li>
+                    </ul>
+                </div>
+            </nav>
+            {% block search %}{% endblock %}
+            {% block page %}{% endblock %}
         {% endblock %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="//code.jquery.com/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'js/navgoco.min.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+        $('.dropdown-menu').navgoco({
+              caret: '<span class="caret"></span>',
+              accordion: false,
+              openClass: 'open',
+              save: true,
+              cookie: {
+                  name: 'navgoco',
+                  expires: false,
+                  path: '/'
+              },
+              slide: {
+                  duration: 400,
+                  easing: 'swing'
+              }
+          });
+    });
+    </script>
+    {% block extra_js %}{% endblock %}
     </body>
 </html>
 

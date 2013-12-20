@@ -1,45 +1,31 @@
 {% load mptt_tags %}
+{% load menu_tags %}
+{% load staticfiles %}
 
-<ul  class="nav nav-pills nav-justifie">
-    {% recursetree menu %}
-            {% if not node.is_leaf_node %}
-                {% if node.is_root_node %}
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ node.name }}<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            {{ children }}
-                        </ul>
-                    </li>
-                {% else %}
-                    <li><a href="#">{{ node.name }}</a>
-                        <ul>
-                            {{ children }}
-                        </ul>
-                    </li>
-                {% endif %}
-
+<ul class="nav navbar-nav">
+{% recursetree menu %}
+    {% menu_perm node user as perm %}
+    {% if perm %}
+        {% if not node.is_leaf_node %}
+            {% if node.is_root_node %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ node.name }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        {{ children }}
+                    </ul>
+                </li>
             {% else %}
-                <li ><a href="{{ node.url }}">{{ node.name }}</a></li>
+                <li><a href="#">{{ node.name }}</a>
+                    <ul class="child">
+                        {{ children }}
+                    </ul>
+                </li>
             {% endif %}
-    {% endrecursetree %}
+
+        {% else %}
+            <li ><a href="{{ node.url }}">{{ node.name }}</a></li>
+        {% endif %}
+    {% endif %}
+
+{% endrecursetree %}
 </ul>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.dropdown-menu').navgoco({
-              caret: '<span class="caret"></span>',
-              accordion: false,
-              openClass: 'open',
-              save: true,
-              cookie: {
-                  name: 'navgoco',
-                  expires: false,
-                  path: '/'
-              },
-              slide: {
-                  duration: 400,
-                  easing: 'swing'
-              }
-          });
-    });
-</script>
-

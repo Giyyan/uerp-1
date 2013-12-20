@@ -23,7 +23,7 @@ INSTALLED_APPS += (
 )
 
 ########## DEBUG-TOOLBAR CONFIGURATION
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('192.168.103.35',)
 
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',

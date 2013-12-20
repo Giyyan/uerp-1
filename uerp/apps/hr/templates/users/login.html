@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <form method="post" class="login form-horizontal">
+        {% csrf_token %}
+        <div class="form-group {% if username.errors %}has-error{% endif %}">
+            <label for="id_username">Email</label>
+            <input id="id_username" name="username" type="email" class="form-control" placeholder="Введите email">
+        </div>
+        <div class="form-group {% if password.errors %}has-error{% endif %}">
+            <label for="id_password">Пароль</label>
+            <input type="password" class="form-control" id="id_password" name="password" placeholder="Пароль">
+        </div>
+        <input type="submit" value="Войти" class="btn btn-success" style="float: right">
+    </form>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vegas/jquery.vegas.css' %}" />
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'vegas/jquery.vegas.js' %}"></script>
+    <script>
+        $(function() {
+          $.vegas('slideshow', {
+          backgrounds:[
+            { src:"{% static 'img/b1.jpg' %}", valign: 'top', fade:1000 },
+            { src:"{% static 'img/b2.jpg' %}", valign: 'top', fade:1000 },
+            { src:"{% static 'img/b3.jpg' %}", valign: 'top', fade:1000 },
+            { src:"{% static 'img/b4.jpg' %}", valign: 'top', fade:1000 },
+            { src:"{% static 'img/b5.jpg' %}", valign: 'top', fade:1000 },
+            { src:"{% static 'img/b6.jpg' %}", valign: 'top', fade:1000 },
+            { src:"{% static 'img/b7.jpg' %}", valign: 'top', fade:1000 },
+          ]
+        })('overlay');
+        });
+    </script>
+{% endblock %}
